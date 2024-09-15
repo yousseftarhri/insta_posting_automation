@@ -2,12 +2,15 @@ import os
 import requests
 from dotenv import load_dotenv
 
+load_dotenv()
+
+
 class Post:
 
     def __init__(self):
-        load_dotenv()
         self.access_token = os.getenv('access_token')
         self.ig_user_id = os.getenv("ig_user_id")
+
 
     def create_container(self, image_url):
 
