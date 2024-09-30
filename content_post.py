@@ -49,10 +49,3 @@ class Post:
         else:
             print("Failed to publish media:", response.status_code, response.text)
 
-
-post_img = Post()
-
-image_url = "https://images.pexels.com/photos/27133048/pexels-photo-27133048/free-photo-of-boire-verre-the-fenetres.jpeg"
-container_id = post_img.create_container(image_url)
-
-post_img.publish_container(container_id)

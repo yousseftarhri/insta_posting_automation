@@ -10,6 +10,15 @@ class Img_generation:
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
         self.client = OpenAI(api_key=self.openai_api_key)
 
+    def generate_prompt(self):
+        prompt = [{"role": "system", "content": """Generate a prompt about building and house niche"""}]
+        completion = self.client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            temperature=0.7,
+            messages=prompt
+        )
+        print(completion.choices[0].message.content)
+        return completion.choices[0].message.content
 
     def generate_img(self,prompt):
         response = self.client.images.generate(
@@ -22,20 +31,5 @@ class Img_generation:
 
         image_url = response.data[0].url
         print(image_url)
+        return image_url
 
-    def generate_prompt(self):
-        prompt = [{"role": "system", "content": """Generate a prompt about building and house niche"""}]
-        completion = self.client.chat.completions.create(
-            model="gpt-3.5-turbo",
-            temperature=0.7,
-            messages=prompt
-        )
-        print(completion.choices[0].message.content)
-        return completion.choices[0].message.content
-
-
-
-img = Img_generation()
-prompt = img.generate_prompt()
-
-img.generate_img(prompt)
