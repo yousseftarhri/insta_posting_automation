@@ -10,6 +10,7 @@ class Img_generation:
         self.openai_api_key = os.getenv("OPENAI_API_KEY")
         self.client = OpenAI(api_key=self.openai_api_key)
 
+
     def generate_prompt(self):
         prompt = [{"role": "system", "content": """Generate a prompt about building and house niche"""}]
         completion = self.client.chat.completions.create(

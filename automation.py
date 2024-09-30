@@ -13,13 +13,12 @@ def call_functions():
     container_id = post_img.create_container(image_url)
     post_img.publish_container(container_id)
 
-call_functions()
 
-"""# Schedule the call_functions method to run every 2 hours
-schedule.every(1).minutes.do(call_functions())
-print("Scheduler started, calling functions every 2 hours.")
+#Schedule the call_functions method to run every day
+schedule.every().day.at("01:00").do(call_functions)
+print("Scheduler started, calling functions every day")
 
 # Keep the scheduler running
 while True:
     schedule.run_pending()
-    time.sleep(1)  # Sleep to prevent high CPU usage"""
+    time.sleep(1)  # Sleep to prevent high CPU usage
